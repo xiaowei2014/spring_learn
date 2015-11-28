@@ -10,38 +10,38 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.meituan.tower.zhiyou">
+    <context:component-scan base-package="my.learn.spring">
         <!--将Controller的注解排除掉 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:db.properties</value>
-                <value>classpath:config.properties</value>
-            </list>
-        </property>
-    </bean>
+    <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath:db.properties</value>-->
+                <!--<value>classpath:config.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
-    <import resource="dao/mysql-datasource.xml"/>
+    <!--<import resource="dao/mysql-datasource.xml"/>-->
 
-    <bean id="upmAuthService" class="com.sankuai.meituan.upm.tools.UpmAuthService">
-        <property name="clientId" value="tower"/>
-        <property name="secret" value="509c7376942fec97db03050ea3f66b85"/>
-    </bean>
-    <bean id="mtFilter" class="com.sankuai.meituan.filter.spring.FilterFactoryBean">
-        <property name="appkey" value="tower" />
-        <property name="loginUrl" value="https://sso.sankuai.com"/>
-        <property name="loginApiUrl" value="http://api.sso-in.sankuai.com"/>
-        <property name="authUrl" value="http://api.upm-in.sankuai.com"/>
-        <property name="callbackUri" value="/mt-sso" />
-        <property name="filterChainDefinitions">
-            <value>
-                /page/** = anon
-            </value>
-        </property>
-    </bean>
+    <!--<bean id="upmAuthService" class="com.sankuai.meituan.upm.tools.UpmAuthService">-->
+        <!--<property name="clientId" value="tower"/>-->
+        <!--<property name="secret" value="509c7376942fec97db03050ea3f66b85"/>-->
+    <!--</bean>-->
+    <!--<bean id="mtFilter" class="com.sankuai.meituan.filter.spring.FilterFactoryBean">-->
+        <!--<property name="appkey" value="tower" />-->
+        <!--<property name="loginUrl" value="https://sso.sankuai.com"/>-->
+        <!--<property name="loginApiUrl" value="http://api.sso-in.sankuai.com"/>-->
+        <!--<property name="authUrl" value="http://api.upm-in.sankuai.com"/>-->
+        <!--<property name="callbackUri" value="/mt-sso" />-->
+        <!--<property name="filterChainDefinitions">-->
+            <!--<value>-->
+                <!--/page/** = anon-->
+            <!--</value>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!--<mvc:annotation-driven/>-->
     <!--<mvc:interceptors>-->
@@ -53,9 +53,11 @@
         <!--&lt;!&ndash; 其它配置 &ndash;&gt;-->
     <!--</mvc:interceptors>-->
 
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-        <property name="prefix" value="vm"/>
-        <property name="suffix" value="vm"/>
-    </bean>
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
+        <!--<property name="prefix" value="vm"/>-->
+        <!--<property name="suffix" value="vm"/>-->
+    <!--</bean>-->
+    <bean id="applicationContextExample" class="my.learn.spring.beanfactory.ApplicationContextExample"/>
+    <bean id="beanLifeCycle" class="my.learn.spring.beanlifecycle.BeanLifeCycle" init-method="myInit" destroy-method="myDestroy" scope="singleton" />
 </beans>
 
