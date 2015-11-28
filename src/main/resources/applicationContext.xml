@@ -2,11 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-	   http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-	   http://www.springframework.org/schema/context
-	   http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	                    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	                    http://www.springframework.org/schema/context
+	                    http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	                    http://www.springframework.org/schema/util
+	                    http://www.springframework.org/schema/spring-util-4.2.xsd">
+
 
     <context:annotation-config/>
 
@@ -14,6 +18,7 @@
         <!--将Controller的注解排除掉 -->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
+
 
     <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
         <!--<property name="locations">-->
@@ -43,6 +48,7 @@
         <!--</property>-->
     <!--</bean>-->
 
+
     <!--<mvc:annotation-driven/>-->
     <!--<mvc:interceptors>-->
         <!--&lt;!&ndash; 加入TraceHandlerInterceptor &ndash;&gt;-->
@@ -53,11 +59,14 @@
         <!--&lt;!&ndash; 其它配置 &ndash;&gt;-->
     <!--</mvc:interceptors>-->
 
+
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
         <!--<property name="prefix" value="vm"/>-->
         <!--<property name="suffix" value="vm"/>-->
     <!--</bean>-->
+
     <bean id="applicationContextExample" class="my.learn.spring.beanfactory.ApplicationContextExample"/>
     <bean id="beanLifeCycle" class="my.learn.spring.beanlifecycle.BeanLifeCycle" init-method="myInit" destroy-method="myDestroy" scope="singleton" />
+
 </beans>
 
