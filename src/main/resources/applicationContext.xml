@@ -63,9 +63,22 @@
         <!--<property name="prefix" value="vm"/>-->
         <!--<property name="suffix" value="vm"/>-->
     <!--</bean>-->
-
+    <!--p:interceptorNames="greetingBeforeAdvice,greetingAfterAdvice"-->
     <bean id="applicationContextExample" class="my.learn.spring.beanfactory.ApplicationContextExample"/>
     <bean id="beanLifeCycle" class="my.learn.spring.beanlifecycle.BeanLifeCycle" init-method="myInit" destroy-method="myDestroy" scope="singleton" />
 
+    <bean id="greetingBeforeAdvice" class="my.learn.spring.aop.advice.GreetingBeforeAdvice"/>
+    <bean id="greetingAfterAdvice" class="my.learn.spring.aop.advice.GreetingAfterAdvice"/>
+    <bean id="naiveWaiter" class="my.learn.spring.aop.advice.NaiveWaiter"/>
+    <bean id="waiterProxy" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:proxyInterfaces="my.learn.spring.aop.advice.Waiter"
+          p:target-ref="naiveWaiter">
+        <property name="interceptorNames">
+            <list>
+                <idref bean ="greetingBeforeAdvice"/>
+                <idref bean="greetingAfterAdvice"/>
+            </list>
+        </property>
+            </bean>
 </beans>
 

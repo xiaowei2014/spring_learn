@@ -1,6 +1,6 @@
 package my.learn.spring.aop.cglib;
 
-import my.learn.spring.aop.PerformanceMonitor;
+import my.learn.spring.aop.monitor.PerformanceMonitor;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;

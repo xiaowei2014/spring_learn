@@ -1,6 +1,6 @@
 package my.learn.spring.aop.cglib;
 
-import my.learn.spring.aop.ForumServiceImpl;
+import my.learn.spring.aop.monitor.ForumServiceImpl;
 
 /**
  * Desc:

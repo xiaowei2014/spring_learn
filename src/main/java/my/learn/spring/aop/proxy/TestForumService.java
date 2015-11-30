@@ -1,7 +1,7 @@
 package my.learn.spring.aop.proxy;
 
-import my.learn.spring.aop.ForumService;
-import my.learn.spring.aop.ForumServiceImpl;
+import my.learn.spring.aop.monitor.ForumService;
+import my.learn.spring.aop.monitor.ForumServiceImpl;
 
 import java.lang.reflect.Proxy;
 

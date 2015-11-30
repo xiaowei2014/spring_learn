@@ -1,6 +1,6 @@
 package my.learn.spring.aop.proxy;
 
-import my.learn.spring.aop.PerformanceMonitor;
+import my.learn.spring.aop.monitor.PerformanceMonitor;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
