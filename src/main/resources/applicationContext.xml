@@ -64,19 +64,29 @@
         <!--<property name="suffix" value="vm"/>-->
     <!--</bean>-->
     <!--p:interceptorNames="greetingBeforeAdvice,greetingAfterAdvice"-->
+
+    <!--lifecycle -->
     <bean id="applicationContextExample" class="my.learn.spring.beanfactory.ApplicationContextExample"/>
     <bean id="beanLifeCycle" class="my.learn.spring.beanlifecycle.BeanLifeCycle" init-method="myInit" destroy-method="myDestroy" scope="singleton" />
 
+    <!--aop -->
     <bean id="greetingBeforeAdvice" class="my.learn.spring.aop.advice.GreetingBeforeAdvice"/>
     <bean id="greetingAfterAdvice" class="my.learn.spring.aop.advice.GreetingAfterAdvice"/>
+    <bean id="greetingAround" class="my.learn.spring.aop.advice.GreetingAround"/>
+    <bean id="greetingThrowsAdvice" class="my.learn.spring.aop.advice.GreetingThrowsAdvice"/>
+    <bean id="performanceMonitor" class="my.learn.spring.aop.advice.ControllablePerformanceMonitor"/>
     <bean id="naiveWaiter" class="my.learn.spring.aop.advice.NaiveWaiter"/>
     <bean id="waiterProxy" class="org.springframework.aop.framework.ProxyFactoryBean"
-          p:proxyInterfaces="my.learn.spring.aop.advice.Waiter"
-          p:target-ref="naiveWaiter">
+          p:proxyInterfaces="my.learn.spring.aop.advice.Waiter,my.learn.spring.aop.monitor.Monitorable"
+          p:target-ref="naiveWaiter"
+            p:proxyTargetClass="true">
         <property name="interceptorNames">
             <list>
                 <idref bean ="greetingBeforeAdvice"/>
                 <idref bean="greetingAfterAdvice"/>
+                <idref bean="greetingAround"/>
+                <idref bean="greetingThrowsAdvice"/>
+                <idref bean="performanceMonitor"/>
             </list>
         </property>
             </bean>

@@ -9,6 +9,6 @@ import java.lang.reflect.Method;
  */
 public class GreetingAfterAdvice implements AfterReturningAdvice{
     public void afterReturning(Object returnValue, Method method, Object[] args, Object target) throws Throwable {
-        System.out.println("Please enjoy yourself !");
+        System.out.println("AfterAdvice : Please enjoy yourself !");
     }
 }
