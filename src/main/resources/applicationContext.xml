@@ -89,6 +89,17 @@
                 <idref bean="performanceMonitor"/>
             </list>
         </property>
-            </bean>
+    </bean>
+
+    <!--advisor -->
+    <bean id="waiterTarget" class="my.learn.spring.aop.advisor.Waiter"/>
+    <bean id="sellerTarget" class="my.learn.spring.aop.advisor.Seller"/>
+    <bean id="methodBeforeAdviceExample" class="my.learn.spring.aop.advisor.MethodBeforeAdviceExample"/>
+    <bean id="staticMethodMatcherPointcutAdvisorExample" class="my.learn.spring.aop.advisor.StaticMethodMatcherPointcutAdvisorExample" p:advice-ref="methodBeforeAdviceExample"/>
+    <bean id="parent" abstract="true" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="staticMethodMatcherPointcutAdvisorExample"
+          p:proxyTargetClass="true"/>
+    <bean id="waiter" parent="parent" p:target-ref="waiterTarget"/>
+    <bean id="seller" parent="parent" p:target-ref="sellerTarget"/>
 </beans>
 
