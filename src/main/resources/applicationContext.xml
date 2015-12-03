@@ -95,11 +95,27 @@
     <bean id="waiterTarget" class="my.learn.spring.aop.advisor.Waiter"/>
     <bean id="sellerTarget" class="my.learn.spring.aop.advisor.Seller"/>
     <bean id="methodBeforeAdviceExample" class="my.learn.spring.aop.advisor.MethodBeforeAdviceExample"/>
+    <!-- StaticMethodMatcherPointcutAdvisor-->
     <bean id="staticMethodMatcherPointcutAdvisorExample" class="my.learn.spring.aop.advisor.StaticMethodMatcherPointcutAdvisorExample" p:advice-ref="methodBeforeAdviceExample"/>
     <bean id="parent" abstract="true" class="org.springframework.aop.framework.ProxyFactoryBean"
           p:interceptorNames="staticMethodMatcherPointcutAdvisorExample"
           p:proxyTargetClass="true"/>
     <bean id="waiter" parent="parent" p:target-ref="waiterTarget"/>
     <bean id="seller" parent="parent" p:target-ref="sellerTarget"/>
+
+    <!--RegexpMethodPointcutAdvisor -->
+    <bean id="regexpMethodPointcutAdvisorExample" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
+          p:advice-ref="methodBeforeAdviceExample">
+        <property name="patterns">
+            <list>
+                <value>.*greet.*</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="waiter2" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="regexpMethodPointcutAdvisorExample"
+          p:target-ref="waiterTarget"
+          p:proxyTargetClass="true"/>
+
 </beans>
 

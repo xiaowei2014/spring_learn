@@ -9,10 +9,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AdvisorExample {
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+        System.out.println("StaticMethodMatcherPointcutAdvisor");
         Waiter waiter = (Waiter) ctx.getBean("waiter");
         Seller seller = (Seller) ctx.getBean("seller");
         waiter.greetTo("John");
         waiter.serveTo("John");
         seller.greetTo("John");
+
+        System.out.println("RegexpMethodPointcutAdvisor");
+        waiter = (Waiter) ctx.getBean("waiter2");
+        waiter.greetTo("John");
+        waiter.serveTo("John");
     }
 }
