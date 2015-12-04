@@ -117,5 +117,41 @@
           p:target-ref="waiterTarget"
           p:proxyTargetClass="true"/>
 
+    <!--ControlFlowPointcutAdvisor -->
+    <bean id="controlFlowPointcutExample" class="org.springframework.aop.support.ControlFlowPointcut">
+        <constructor-arg type="java.lang.Class" value="my.learn.spring.aop.advisor.WaiterDelegate"/>
+        <constructor-arg type="java.lang.String" value="service"/>
+    </bean>
+    <bean id="controlFlowPointcutAdvisorExample" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+          p:pointcut-ref="controlFlowPointcutExample"
+          p:advice-ref="greetingBeforeAdvice"/>
+    <bean id="waiter4" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="controlFlowPointcutAdvisorExample"
+          p:target-ref="waiterTarget"
+          p:proxyTargetClass="true"/>
+
+
+    <!--ComposablePointcut -->
+    <bean id="composablePointcutExample" class="my.learn.spring.aop.advisor.ComposablePointcutExample"/>
+    <bean id="composablePointcutAdvisorExample" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+          p:pointcut="#{composablePointcutExample.intersectionPointcut}"
+          p:advice-ref="greetingBeforeAdvice"/>
+    <bean id="waiter5" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="composablePointcutAdvisorExample"
+          p:target-ref="waiterTarget"
+          p:proxyTargetClass="true"/>
+
+    <!--DefaultIntroductionAdvisor -->
+    <bean id="defaultIntroductionAdvisorExample" class="org.springframework.aop.support.DefaultIntroductionAdvisor">
+        <constructor-arg>
+            <bean class="my.learn.spring.aop.advice.ControllablePerformanceMonitor"/>
+        </constructor-arg>
+    </bean>
+    <bean id="waiterProxy1" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="defaultIntroductionAdvisorExample"
+          p:target-ref="naiveWaiter"
+          p:proxyTargetClass="true"/>
+
+
 </beans>
 
