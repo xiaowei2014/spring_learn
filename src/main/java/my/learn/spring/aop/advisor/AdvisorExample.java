@@ -16,9 +16,18 @@ public class AdvisorExample {
         waiter.serveTo("John");
         seller.greetTo("John");
 
+        System.out.println();
         System.out.println("RegexpMethodPointcutAdvisor");
         waiter = (Waiter) ctx.getBean("waiter2");
         waiter.greetTo("John");
         waiter.serveTo("John");
+
+        System.out.println();
+        System.out.println("DynamicMethodMatcherPointcutAdvisor");
+        waiter = (Waiter) ctx.getBean("waiter3");
+        waiter.serveTo("Peter");
+        waiter.greetTo("Peter");
+        waiter.serveTo("John");
+        waiter.greetTo("John");
     }
 }

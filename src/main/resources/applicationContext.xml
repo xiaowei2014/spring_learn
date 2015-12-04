@@ -117,5 +117,16 @@
           p:target-ref="waiterTarget"
           p:proxyTargetClass="true"/>
 
+    <!-- DynamicMethodMatcherPointcutAdvisor-->
+    <bean id="dynamicMethodMatcherPointcutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor" p:advice-ref="methodBeforeAdviceExample">
+        <property name="pointcut" >
+            <bean class="my.learn.spring.aop.advisor.DynamicMethodMatcherPointcutExample"/>
+        </property>
+    </bean>
+
+    <bean id="waiter3"  class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="dynamicMethodMatcherPointcutAdvisor"
+          p:target-ref="waiterTarget"
+          p:proxyTargetClass="true"/>
 </beans>
 
