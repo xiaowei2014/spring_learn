@@ -9,6 +9,7 @@ public class NaiveWaiter implements Waiter{
 
     }
 
+    @Deprecated
     public void serveTo(String name) {
         System.out.println("serving " + name + "...");
 //        throw  new RuntimeException("greetTo exception");
